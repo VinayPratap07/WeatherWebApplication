@@ -1,0 +1,152 @@
+body{
+    height: 100vh;
+    font-family: sans-serif;
+
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly ;
+    align-items:center ;
+    background-color: rgb(236, 236, 236);
+}
+#firstBox{
+    width: 30vw;
+    background-color: white;
+    border-radius: 30px;
+    height: 93vh;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+}
+#inputBox{
+    font-family: sans-serif;
+    width: 30vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#searchBtn{
+    margin-top: 10.2%;
+    margin-right: 1%;
+    font-size: 1rem;
+    height: 3%;
+    color:rgb(0, 0, 0);
+    background-color: white;
+    border: none;
+}
+#searchBtn:hover{
+    font-size: 1.1rem;
+}
+#cityInput{
+    width: 80%;
+    height: 3%;
+    margin-top: 10%;
+    font-size: 1rem;
+    background-color: white;
+    border: none;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+#cityInput:hover{
+    width: 81%;
+    height: 3.5%;
+    font-size: 1.1rem;
+}
+
+#weatherIcon{
+    height: 15rem;
+    margin: 0;
+    margin-top: 10%;
+
+}
+
+#tempNumber{
+    font-size: 6rem;
+    font-weight: 100;
+    width: 100%;
+    margin: 0;
+    margin-top: 3rem;
+    margin-left: 12%;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+#dayAndTime{
+    font-size: 1.5rem;
+    width: 100%;
+    margin:0;
+    margin-left: 13%;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+hr{
+    width: 75%;
+    height: 0;
+    margin: 0;
+    margin-top: 2rem;
+    padding: 0;
+    opacity: 0.5;
+}
+#weatherDescription{
+    font-size: 1.4rem;
+    width: 100%;
+    margin:0;
+    margin-top: 2rem;
+    margin-left: 12%;
+    display: flex;
+    align-items: center;
+}
+
+
+
+#secondBox{
+    width: 65.5vw;
+    height: 85vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#heading{
+    font-size: 3rem;
+    width: 100%;
+    margin: 0;
+    margin-left: 4%;
+    font-weight: bolder;
+    
+}
+.minorInfoClass{
+    background-color: white;
+    width: 19vw;
+    height: 35vh;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.smallBoxesHeading{
+    margin-left: 2rem;
+    font-size: 2rem;
+    opacity: 1;
+    color: #6d6d6d;
+    margin-bottom: 3rem;
+}
+.highlightStats{
+    font-size: 5rem;
+    display: inline;
+    margin-left: 2rem;
+}
+.highlightStatsUnit{
+    font-size: 1.5rem;
+    display: inline;
+}
+.secondaryStatsClass{
+    margin-left: 2rem;
+    margin-top: 2.8rem;
+    font-size: 2rem;
+}
+/* * {
+    outline: 1px dashed red;
+} */
