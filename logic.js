@@ -1,3 +1,4 @@
+const body = document.querySelector("#page");
 const inputCityName = document.querySelector("#cityInput");
 const searchBtn = document.querySelector("#searchBtn");
 const weatherIcon = document.querySelector("#weatherIcon");
@@ -16,17 +17,35 @@ const minTempratureNo  = document.querySelector("#minTempratureNo");
 const maxTempratureNo  = document.querySelector("#maxTempratureNo");
 const atmosphericPressure  = document.querySelector("#atmosphericPressure");
 const atmosphericPressureDescription  = document.querySelector("#atmosphericPressureDescription");
+const loader  = document.querySelector("#loader");
+const loaderBackground  = document.querySelector("#loaderBackground");
+const cityNameOnImage  = document.querySelector("#cityNameOnImage");
+const cityImages  = document.querySelector("#cityImages");
 
 
-const apiKey = "8ac828e0c51cb13ec4d9360c52dd2841";              //Generated api key from https://openweathermap.org/
-searchBtn.addEventListener("click", getWeather);                //Added event listner to search button
-inputCityName.addEventListener("keypress", function(e) {
-    if (e.key === "Enter") getWeather();
+const apiKey = "API_KEy";              //Generated api key from https://openweathermap.org
+const apiKeyCityImages = "API_KEy";     //Generated api key from https://unsplash.com
+
+searchBtn.addEventListener("click", async ()=>{                     //Added event listner to search button
+    await getWeather();
+    await getCityImages();
+    inputCityName.value = "";
+});                
+
+inputCityName.addEventListener("keypress",async function(e) {
+    if (e.key === "Enter"){ 
+    await  getWeather();
+    await getCityImages();
+    inputCityName.value = "";
+    }
 });
 
 async function getWeather(){
-    const cityName = inputCityName.value.toLowerCase();         //used lower case method if user enters in all caps 
+    const cityName = inputCityName.value.toLowerCase();         //used lower case method if user enters in all caps
+    if(!cityName)return;
 
+    loader.style.display = "block";
+    loaderBackground.style.display = "block";
 
     try{                                                          //Using try, catch function to detect any errors while fetching api
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`);
@@ -48,6 +67,8 @@ async function getWeather(){
         const minTemp = data.main.temp_min;
         const maxTemp = data.main.temp_max;
         const atmosPressure = data.main.pressure;
+        const cityNameForDisplay = data.name;
+        const countryNameForDisplay = data.sys.country;
 
 
         getTemperature(data);                                   //calling functions to do show the stats or resulst
@@ -60,14 +81,44 @@ async function getWeather(){
         getHumidity(humidityFromApi);
         getMinAndMaxTemp(minTemp, maxTemp);
         getAtmosphericPressure(atmosPressure);
+        getCityName(cityNameForDisplay, countryNameForDisplay);
 
-        inputCityName.value = "";
+
+        const existingError = document.getElementById("errorMessageBox");
+        if (existingError) existingError.remove();
     }
     catch(error){
-        console.error(error);
+        errorHandling();
+        inputCityName.value = "";
+    }
+    finally{
+        loader.style.display = "none";
+        loaderBackground.style.display = "none";
     }
 }
 
+async function getCityImages(){
+    const cityName = inputCityName.value.toLowerCase(); 
+    if(!cityName)return;
+
+    
+    try{                                                          //Using try, catch function to detect any errors while fetching api
+        const response = await fetch(`https://api.unsplash.com/search/photos?query=${cityName}&client_id=${apiKeyCityImages}`);
+        if(!response.ok){
+            throw new Error ("Couldn't find the city");
+        }
+        const data = await response.json();
+        console.log(data);
+
+        const randomNum = Math.floor(Math.random()*data.results.length);
+        const imageUrl = data.results[randomNum].urls.regular;
+        cityImages.style.backgroundImage = `url("${imageUrl})"`
+    }
+        catch(error){
+        errorHandling();
+        
+    }
+}
 
 function getTemperature(data){                                      //Function to get temperature from api, convert it into celsius and add it to display the temperature
     let temperature = data.main.temp;
@@ -139,7 +190,6 @@ function getVisiblity(visibility){                                  //Functin to
     }
 }
 
-
 function getSunTime(sunRise, sunSet, countryZone, timeZone){        //Function to dispaly Sunset and Sunrise time
     const sunriseUTC = sunRise * 1000;
     const sunsetUTC = sunSet * 1000;
@@ -203,4 +253,21 @@ function getAtmosphericPressure(pressureInput){
     } else {
         atmosphericPressureDescription.innerText = "Very high pressure";
     }
+}
+
+function errorHandling(){
+    const errorBox = document.createElement("div");
+    const errorMessage = document.createElement("p");
+
+    errorBox.id = "errorMessageBox";
+    errorMessage.id = "errorMessage";
+    errorMessage.innerText = "Something went wrong!";
+
+    body.prepend(errorBox);
+    errorBox.appendChild(errorMessage);
+
+}
+
+function getCityName(cityNameForDisplay, countryNameForDisplay){
+    cityNameOnImage.innerText = cityNameForDisplay + ", " + countryNameForDisplay;
 }
