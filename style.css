@@ -1,20 +1,68 @@
-body{
+#page{
     height: 100vh;
     font-family: sans-serif;
-
     margin: 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly ;
     align-items:center ;
     background-color: rgb(236, 236, 236);
 }
+#errorMessageBox{
+    width: 100%;
+    height: 2rem;
+    position: fixed;
+    top: 0;
+    background-color: rgb(255, 76, 76);
+    align-content: center;
+    animation: slideOut 0.5s ease-in-out;
+}
+#errorMessage{
+    margin:0;
+    margin-left: 45%;
+    color: white;
+    font-weight: bold;
+    animation: slideOut 1s ease-in-out;
+}
+@keyframes slideOut {
+    from {top:-2rem;}
+    to{top: 0rem;}
+}
+
+#loader {
+    height: 3rem;
+    width: 3rem;
+    border: 5px solid #b3abab;             
+    border-top: 5px solid #3498db;      
+    border-radius: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: roll 1s linear infinite;
+    z-index: 1000;
+    display: none;
+}
+@keyframes roll {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+#loaderBackground{
+    position:fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: grey;
+    opacity: 0.3;
+    z-index: 1;
+    display: none;
+}
+
 #firstBox{
     width: 30vw;
     background-color: white;
     border-radius: 30px;
     height: 93vh;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-
 }
 #inputBox{
     font-family: sans-serif;
@@ -103,8 +151,25 @@ hr{
     display: flex;
     align-items: center;
 }
-
-
+#cityImages{
+    width: 80%;
+    height: 12rem;
+    margin-top: 1rem;
+    border-radius: 20px;
+    background-image: url("https://cdn.pixabay.com/photo/2023/07/09/12/42/sunflower-7327456_960_720.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+#cityNameOnImage{
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    font-weight: bold;
+    width: 50%;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
 
 #secondBox{
     width: 65.5vw;
