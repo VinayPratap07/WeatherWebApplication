@@ -22,8 +22,9 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start;  
 }
+
 
 #searchBtn{
     margin-top: 10.2%;
@@ -52,7 +53,11 @@ body{
     height: 3.5%;
     font-size: 1.1rem;
 }
-
+#cityInput:focus {
+    border: none;
+    outline: none;
+    /* box-shadow: 0 0 5px rgba(100, 100, 255, 0.5);  */
+}
 #weatherIcon{
     height: 15rem;
     margin: 0;
@@ -124,6 +129,13 @@ hr{
     height: 35vh;
     border-radius: 30px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+.minorInfoClass:hover{
+    width: 19.5vw;
+    height: 35.5vh;
+    box-shadow: 0 4px 12px rgba(0,0,0,1);
 }
 
 .smallBoxesHeading{
@@ -147,6 +159,56 @@ hr{
     margin-top: 2.8rem;
     font-size: 2rem;
 }
+
+#sunBox{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sunsetSunriseTimeClass{
+    font-size: 2rem;
+    display: inline-block;
+    align-items: center;
+    width: 50%;
+    margin: 0;
+    margin-left: 0.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    
+}
+.sunImg{
+    height: 4.5rem;
+    margin-left: 3rem;
+    margin-top: 0rem;
+    margin-bottom: 2rem;
+}
+
+#minTemperature{
+    font-size: 2rem;
+    color: #3070c5;
+    margin: 0;
+    margin-left: 4.5rem;
+    display: inline-block;
+}
+#maxTemperature{
+    font-size: 2rem;
+    color: #EE4B2B;
+    margin: 0;
+    margin-left: 4.5rem;
+    display: inline-block;
+}
+.temperatureNumStyleClass{
+    display: inline-block;
+    font-size: 2.8rem;
+    margin: 0;
+    margin-left: 0.5rem;
+    margin-bottom: 2rem;
+    width: 55%;
+
+
+}
+
 /* * {
     outline: 1px dashed red;
 } */
